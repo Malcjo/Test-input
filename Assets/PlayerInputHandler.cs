@@ -13,8 +13,8 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         var Index = playerInput.playerIndex;
-        PlayerIndex = playerInput.playerIndex;
-        player.SetPlayerIndex(playerInput.playerIndex);
+        PlayerIndex = playerInput.playerIndex + 1;
+        player.SetPlayerIndex(PlayerIndex);
     }
 
     public void OnJump(CallbackContext context)

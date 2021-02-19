@@ -6,9 +6,16 @@ public class Player : MonoBehaviour
 {
     private float speed = 5;
     private Vector2 Input;
+    [SerializeField] private GameObject PlayerPrefab = null;
     [SerializeField] private int playerIndex = 0;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 DisplayVelocity;
+
+    public void StartGame()
+    {
+        var player = Instantiate(PlayerPrefab);
+        rb = player.GetComponent<Rigidbody>();
+    }
     public void Test()
     {
         Debug.Log("Test Jump: " + GetPlayerIndex());
@@ -27,8 +34,10 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-
-        rb.velocity = new Vector3(Input.x, 0, Input.y)*speed;
-        DisplayVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        if (rb != null)
+        {
+            rb.velocity = new Vector3(Input.x, 0, Input.y)*speed;
+            DisplayVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        }
     }
 }
