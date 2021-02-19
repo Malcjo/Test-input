@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
-public enum Scenes { MainMenu, CharacterSelect, Game}
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerInputManager inputManager;
@@ -12,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject currentButton;
 
     [SerializeField] private GameObject MainMenu, CharacterSelect;
-    private Scenes scenes;
+    private int sceneIndex;
     public static GameManager instance;
     private bool gameStarted = false;
     private void Awake()
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        scenes = Scenes.MainMenu;
+        sceneIndex = 0;
         if(eventSystem != null)
         {
             eventSystem = FindObjectOfType<EventSystem>();
@@ -42,19 +41,19 @@ public class GameManager : MonoBehaviour
     //then move it off don't destroy on load once in new scene
     void Update()
     {
-        switch (scenes)
+        switch (sceneIndex)
         {
-            case Scenes.MainMenu:
+            case 0:
                 foreach (Player ob in FindObjectsOfType(typeof(Player)))
                 {
                     Destroy(ob);
                 }
                 inputManager.DisableJoining();
                 break;
-            case Scenes.CharacterSelect:
+            case 1:
                 inputManager.EnableJoining();
                 break;
-            case Scenes.Game:
+            case 2:
                 inputManager.DisableJoining();
                 break;
         }
@@ -70,10 +69,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void ChangeUIScene(GameObject NewPanel, GameObject OldPanel)
+    public void ChangeSceneIndex(int Index)
     {
-        OldPanel.SetActive(false);
-        NewPanel.SetActive(true);
+        sceneIndex = Index;
     }
     public void ChangePreviousbutton()
     {
