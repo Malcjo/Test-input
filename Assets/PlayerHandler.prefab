@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1057791652139198073}
   - component: {fileID: 4180449831444208677}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2922591937527201539}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4961e6f4ce87e514cac76810ba0a17f5, type: 3}
   m_Name: 
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6053cf6e56c72438a7821666cd1a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2557989985727594261, guid: f669d48ad6a8f33498c935167c7ebc22, type: 3}
   playerInput: {fileID: 1057791652139198073}
   player: {fileID: 7431547966399863884}
   PlayerIndex: 0

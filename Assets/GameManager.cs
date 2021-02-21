@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (Player ob in FindObjectsOfType(typeof(Player)))
             {
-                ob.StartGame();
+                //ob.StartGame();
             }
         }
     }

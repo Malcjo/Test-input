@@ -11,11 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 DisplayVelocity;
 
-    public void StartGame()
-    {
-        var player = Instantiate(PlayerPrefab);
-        rb = player.GetComponent<Rigidbody>();
-    }
+
     public void Test()
     {
         Debug.Log("Test Jump: " + GetPlayerIndex());
