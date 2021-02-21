@@ -16,7 +16,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         var Index = playerInput.playerIndex;
         PlayerIndex = playerInput.playerIndex + 1;
-        player.SetPlayerIndex(PlayerIndex);
+        if(player != null)
+        {
+            player.SetPlayerIndex(PlayerIndex);
+        }
+
     }
 
     public void OnJump(CallbackContext context)
