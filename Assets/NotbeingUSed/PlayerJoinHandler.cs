@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerJoinHandler : MonoBehaviour
 {
-    [SerializeField] private BindToPlayer currentPlayerBind;
+    [SerializeField] BindToPlayer currentPlayerBind;
     public void JoinPlayer(PlayerInput input)
     {
         currentPlayerBind.JoinGame(input);

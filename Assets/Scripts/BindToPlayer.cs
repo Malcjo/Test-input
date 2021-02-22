@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class BindToPlayer : MonoBehaviour
 {
     public List<GameObject> players = new List<GameObject>();
-    private PlayerJoinHandler join = null;
+    [SerializeField] private PlayerJoinHandler join = null;
 
     public GameObject events = null;
 
