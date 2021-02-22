@@ -61,7 +61,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4180449831444208677}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: MoveInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -150,7 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6053cf6e56c72438a7821666cd1a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ready: 0
   playerPrefab: {fileID: 2557989985727594261, guid: f669d48ad6a8f33498c935167c7ebc22, type: 3}
   playerInput: {fileID: 1057791652139198073}
   player: {fileID: 0}
   PlayerIndex: 0
+  currentScene:
+    m_Handle: 0
+  menuScene:
+    m_Handle: 0

@@ -35,4 +35,18 @@ public class BindToPlayer : MonoBehaviour
             join.SetPlayerBind(this);
         }
     }
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene() == menuScene)
+        {
+            if(GameManager.instance.GetPlayer1Ready() == true && GameManager.instance.GetPlayer2Ready() == true)
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
+    }
+    public void ReadyPlayer()
+    {
+        GameManager.instance.ReadyPlayer();
+    }
 }

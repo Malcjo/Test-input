@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
     private float speed = 5;
-    private Vector2 Input;
+    public Vector2 Input;
     [SerializeField] private GameObject PlayerPrefab = null;
     [SerializeField] private int playerIndex = 0;
     [SerializeField] private Rigidbody rb;
@@ -24,15 +25,21 @@ public class Player : MonoBehaviour
     {
         playerIndex = var;
     }
-    public void SetInput(Vector2 direction)
+
+
+    public void GetMoveInput(CallbackContext context)
     {
-        Input = direction;
+        Input = context.ReadValue<Vector2>();
     }
     private void Update()
     {
+        MovePlayer();
+    }
+    private void MovePlayer()
+    {
         if (rb != null)
         {
-            rb.velocity = new Vector3(Input.x, 0, Input.y)*speed;
+            rb.velocity = new Vector3(Input.x, 0, Input.y) * speed;
             DisplayVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
     }
