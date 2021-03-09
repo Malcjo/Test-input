@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject previousButotn;
     [SerializeField] private GameObject currentButton;
+    public List<GameObject> NumberOfPlayers = new List<GameObject>();
 
     [SerializeField] private GameObject MainMenu, CharacterSelect;
     private int sceneIndex;

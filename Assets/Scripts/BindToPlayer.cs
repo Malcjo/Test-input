@@ -15,8 +15,11 @@ public class BindToPlayer : MonoBehaviour
     Scene menuScene;
     public void JoinGame(PlayerInput input)
     {
+        int i = input.playerIndex;
         players.Add(input.gameObject);
+        GameManager.instance.NumberOfPlayers.Add(input.gameObject);
         input.gameObject.GetComponent<PlayerInputHandler>().SetInput(input);
+        input.gameObject.GetComponent<PlayerInputHandler>().SetPlayerIndex(i);
         DontDestroyOnLoad(input.gameObject);
     }
 

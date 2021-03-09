@@ -13,7 +13,13 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Player player;
+    [SerializeField] private UINav uINav;
     [SerializeField] private int PlayerIndex;
+    [SerializeField] private GameObject UIPrefab;
+    [SerializeField] GameObject UIHandler = null;
+    [SerializeField] UIInput _UIInput;
+
+    [SerializeField] private Vector2 VectorNavInput, VectorPlayerInput;
 
     [SerializeField] Scene currentScene;
     [SerializeField] Scene menuScene;
@@ -22,6 +28,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene();
         menuScene = SceneManager.GetSceneByBuildIndex(0);
+        UIHandler = Instantiate(UIPrefab);
+        _UIInput = UIHandler.GetComponent<UIInput>();
+        _UIInput.AssignInputHandler(this);
         DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
@@ -35,14 +44,28 @@ public class PlayerInputHandler : MonoBehaviour
             }
         }
     }
-
+    public void SetPlayerIndex(int i)
+    {
+        PlayerIndex = i ++;
+    }
+    public int GetPlayerIndex()
+    {
+        return PlayerIndex;
+    }
     public void MoveInput(CallbackContext context)
     {
         if(player != null)
         {
             player.Input = context.ReadValue<Vector2>();
             player.GetMoveInput(context);
+            VectorPlayerInput = context.ReadValue<Vector2>();
         }
+    }
+    public void Navigate(CallbackContext context)
+    {
+        _UIInput.Input = context.ReadValue<Vector2>();
+        _UIInput.GetUIMoveInput(context);
+        VectorNavInput = context.ReadValue<Vector2>();
     }
     public void StartGame()
     {
