@@ -677,6 +677,7 @@ MonoBehaviour:
   players: []
   join: {fileID: 522297355}
   events: {fileID: 522297351}
+  playerIndex: 0
 --- !u!1 &522297351
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +812,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 2922591937527201539, guid: 6b63255469a462d40b3edfd42f82ed9c, type: 3}
+  m_PlayerPrefab: {fileID: 2922591937527201539, guid: dc2c5427514b36f4e99e81453e45adc5, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1

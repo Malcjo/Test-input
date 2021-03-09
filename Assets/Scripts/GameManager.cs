@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] bool player1Ready, player2Ready;
+    [SerializeField] bool player1Ready = false, player2Ready = false;
     [SerializeField] private PlayerInputManager inputManager;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject previousButotn;
@@ -78,15 +78,16 @@ public class GameManager : MonoBehaviour
     {
         return player2Ready;
     }
-    public void ReadyPlayer()
+    public void ReadyPlayer(int i)
     {
-        if (player1Ready == true)
+        switch (i)
         {
-            player2Ready = true;
-        }
-        else
-        {
-            player1Ready = true;
+            case 1:
+                player1Ready = true;
+                break;
+            case 2:
+                player2Ready = true;
+                break;
         }
     }
     public void ChangeSceneIndex(int Index)

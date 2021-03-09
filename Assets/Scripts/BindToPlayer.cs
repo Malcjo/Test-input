@@ -13,10 +13,15 @@ public class BindToPlayer : MonoBehaviour
 
     Scene currentScene;
     Scene menuScene;
+
+    public int playerIndex;
     public void JoinGame(PlayerInput input)
     {
         players.Add(input.gameObject);
         input.gameObject.GetComponent<PlayerInputHandler>().SetInput(input);
+        playerIndex = players.Count;
+        input.gameObject.GetComponent<PlayerInputHandler>().PlayerIndex = playerIndex;
+        input.gameObject.GetComponent<PlayerInputHandler>().canAct = true;
         DontDestroyOnLoad(input.gameObject);
     }
 
@@ -44,9 +49,5 @@ public class BindToPlayer : MonoBehaviour
                 SceneManager.LoadScene(1);
             }
         }
-    }
-    public void ReadyPlayer()
-    {
-        GameManager.instance.ReadyPlayer();
     }
 }

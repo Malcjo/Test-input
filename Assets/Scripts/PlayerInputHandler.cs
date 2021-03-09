@@ -9,6 +9,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public bool canAct = false;
+
     public bool ready = false;
     public PlayerEnum.Character character;
     [SerializeField] GameObject capsule = null;
@@ -16,12 +18,12 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Player player;
-    [SerializeField] private int PlayerIndex;
+    [SerializeField] public int PlayerIndex;
 
     [SerializeField] Scene currentScene;
     [SerializeField] Scene menuScene;
     GameObject playerCharacter = null;
-
+    bool readyAndWaiting = false;
 
     public bool Readied = false;
     public int chara = 0;
@@ -29,7 +31,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene();
         menuScene = SceneManager.GetSceneByBuildIndex(0);
-        StartCoroutine(NotReady());
         DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
@@ -41,6 +42,10 @@ public class PlayerInputHandler : MonoBehaviour
                 currentScene = SceneManager.GetActiveScene();
                 StartGame();
             }
+        }
+        if (readyAndWaiting)
+        {
+            GameManager.instance.ReadyPlayer(PlayerIndex);
         }
     }
 
@@ -92,24 +97,26 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     #region robStuff
-    bool primed = true;
+    public bool primed = false;
     public void Activate(CallbackContext context)
     {
-        if (context.performed && primed)
+        if (canAct)
         {
-            primed = false;
-            Readied = true;
+            if (context.performed && primed)
+            {
+                print("hit");
+                primed = false;
+                Readied = true;
+                if (Readied)
+                {
+                    readyAndWaiting = true;
+                }
+            }
+            else if (context.canceled)
+            {
+                primed = true;
+            }
         }
-        if (context.canceled)
-        {
-            primed = true;
-        }
-    }
-
-    IEnumerator NotReady()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Readied = false;
     }
 
     void CharSwitch()
